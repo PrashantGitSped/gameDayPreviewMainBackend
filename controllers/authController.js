@@ -32,6 +32,7 @@ exports.registerUser = async (req,res) => {
 };
 
 exports.authUser = async (req,res) => {
+    console.log('reached before destructuring body')
     const {email, password} = req.body;
     try{
         const user = await User.findOne({email});
@@ -49,6 +50,7 @@ exports.authUser = async (req,res) => {
             res.status(401).json({message: 'Invalid email and password'});
         }
     }catch(error){
+        console.log(error.message)
         res.status(500).json({message: error.message});
     }
 
